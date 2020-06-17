@@ -357,6 +357,11 @@
 #include "triangle.h"
 #endif /* TRILIBRARY */
 
+/* Fix access violation error on WIN64 */
+#ifdef _WIN64
+    #define long __int64
+#endif
+
 /* A few forward declarations.                                               */
 
 #ifndef TRILIBRARY
@@ -16003,3 +16008,7 @@ char **argv;
   return 0;
 #endif /* not TRILIBRARY */
 }
+
+#ifdef _WIN64
+    #undef long
+#endif
